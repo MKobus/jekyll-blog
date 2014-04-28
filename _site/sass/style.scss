@@ -5,43 +5,64 @@ $pink: #CF4858;
 $carbon: #4d505B;
 
 @font-face {
-    font-family: 'Mono Social Icons Font';
-    src: url('../fonts/MonoSocialIconsFont-1.10.eot');
-    src: url('../fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/MonoSocialIconsFont-1.10.woff') format('woff'),
-         url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'),
-         url('../fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
-    src: url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Mono Social Icons Font';
+	src: url('../fonts/MonoSocialIconsFont-1.10.eot');
+	src: url('../fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/MonoSocialIconsFont-1.10.woff') format('woff'),
+	url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+	url('../fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+	src: url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 .symbol, a.symbol:before {
-    font-family: 'Mono Social Icons Font';
-    -webkit-text-rendering: optimizeLegibility;
-    -moz-text-rendering: optimizeLegibility;
-    -ms-text-rendering: optimizeLegibility;
-    -o-text-rendering: optimizeLegibility;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    -ms-font-smoothing: antialiased;
-    -o-font-smoothing: antialiased;
-    font-smoothing: antialiased;
+	font-family: 'Mono Social Icons Font';
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	-ms-text-rendering: optimizeLegibility;
+	-o-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 }
 
 a.symbol:before {
-    content: attr(title);
-    margin-right: 0.3em;
-    font-size: 130%;
+	content: attr(title);
+	margin-right: 0.3em;
+	font-size: 130%;
 }
 
+.symbol {
+	font-size: 30px;
+}
+
+.social-icons {
+	li {
+		display:inline-block;
+	}
+	.symbol{
+		display:block;
+		&:hover{
+			-webkit-transform: scale(1.25);
+			-ms-transform: scale(1.25);
+			transform: scale(1.25);
+			-webkit-transition: all .25s ease-in-out; 
+			transition: all .25s ease-in-out;
+		}
+	}
+}
 
 /* ==== Jekyll styles === */
-html { min-height: 100%;
+html { height: 100%;
 	position: relative; }
 
-
+	.jumbotron h1, h2, h3, h4 {
+		font-size:12px;
+	}
 
 	h1, h2, h3, h4, h5, h6 {
 		font-size: 100%; 
@@ -173,14 +194,23 @@ html { min-height: 100%;
 /* ===== My Styles === */
 
 .wrapper {
-	/*margin-top:50px;*/
-	height:100%;
-	/*box-shadow: -5px 5px 0px $carbon;*/
+	width: 100%;
+	height: 100%; 
+	/*	overflow: auto;*/ 
+	display: block;
+
 	
 	.content.container {
 		height:100%;
+		margin-top:40px;
 	}
 	
+}
+
+body, html {
+	height:100%;
+	margin:0;
+	padding:0;
 }
 
 body {
@@ -208,19 +238,88 @@ body {
 
 
 #footer {
-	position: relative;
+	/*position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 80px;
+	height: 80px;*/
 
 
 	.container {
-		height:80px;
+		
 		padding:0;
 		background-color: $carbon;
+		
+	}
+
+	.navbar {
+		background-color: $carbon;
+		height:45px;
+		min-height:45px;
+
+		.navbar-inner {
+			height:45px;
+
+			ul {
+				height: 45px;
+				margin-bottom: 0;
+
+				li {
+					height: 45px;
+					line-height: 45px;
+					a {
+						height: 40px;
+					}
+				}
+			}
+		}
 	}
 }
 
+.navbar-fixed-top {
+	background-color: $teal;
+	min-height: 45px;
+	.navbar-inner {
+		height:45px;
+		.container {
+			height: 45px;
+			padding: 0;
+			background: transparent;
+
+			ul {
+
+				height:45px;
+				line-height: 45px;
+				font-size:18px;
+
+				li {
+					display: inline-block;
+					padding: 0 15px;
+
+					a {
+						color:$pink;
+						font-weight: 500;
+						&:hover {
+							color:$carbon;
+						}
+
+					}
+				}
+			}
+
+			h1 {
+				margin: 0;
+				
+				a {
+					font-size: 20px;
+					&:hover {
+						color: $carbon;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+}
 
 .post-title {
 	font-size:20px;
@@ -249,7 +348,7 @@ a {
 
 	&:hover{
 		text-decoration:none;
-	
+
 	}
 }
 
@@ -283,7 +382,9 @@ ul {
 		cursor: default;
 		margin-bottom: 0;
 	}
-
+	p {
+		padding:0 10px;
+	}
 	.position {
 		color: $pink;
 	}
@@ -302,8 +403,39 @@ ul {
 		list-style-type: none;
 	}
 }
+@media (max-width: 768px) {
+	.wrapper {
+		.content.container {
+			margin-top:0;
+		}
 
+	}
+}
+@media (max-width: 991px) {
+	.wrapper {
+
+
+		.profile {
+			.bioPic {
+				max-height:120px;
+			}
+			h3 {
+				font-size:18px;
+			}
+			span {
+				font-size:13px;
+			}
+		}
+	}
+}
 @media (min-width: 768px) {
+
+	#footer {
+		.social-icons {
+			padding-right: 0;
+			text-align: center;
+		}
+	}
 
 	/* make sidebar nav vertical */ 
 	.sidebar-nav {
