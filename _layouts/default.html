@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include headers.html %}
+
+</head>
+<body>
+
+  <!-- <div class="header">
+    <h1 class="title"><a href="/">{{ site.name }}</a></h1>
+    <a class="extra" href="/">home</a>
+  </div> -->
+
+
+  <div class="wrapper">
+
+
+      <div class="container content">
+        <div class="row">
+
+          <div class="col-sm-3">
+            {% include sidebar.html %}
+            <a class="symbol" title="&#xe286;"></a>
+          </div>
+          <div class="col-sm-8 col-sm-offset-1">
+            <h1 class="blog-title hidden-xs"><a href="/">{{ site.name }}</a></h1>
+
+            {{ content }}
+
+          </div>   
+        </div>
+      </div>
+         <div id="footer">
+          <div class="container">
+            <div class="col-sm-6 pull-left teal-hover">
+              &copy; 2014 Martha Kobus. All right reserved.
+
+            </div>
+     
+              <!-- <div class="contact col-sm-12">
+              <p>
+                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
+                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+              </p>
+      
+           </div> -->
+          </div>
+        </div>
+
+
+
+
+
+
+  </div>
+
+
+  {% include scripts.html %}
+</body>
+</html>
