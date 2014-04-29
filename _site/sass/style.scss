@@ -428,17 +428,22 @@ ul {
 }
 
 @media (max-width: 768px) {
+	body {
+		background: #F5F5F5;
+	}
 
 	.wrapper {
 		.content.container {
 			margin-top:0;
+			background: transparent;
+			.row {
+				margin-bottom: 70px;
+			}
 		}
 
 
 	}
 	#footer.container {
-		background: $teal;
-		height: 70px;
 		text-align: center;
 		.navbar.navbar-fixed-bottom {
 			height: 70px;
