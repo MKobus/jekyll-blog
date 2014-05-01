@@ -2,7 +2,7 @@
 layout: post
 title:  "Google Maps API Integration"
 date:   2014-05-01 17:39:00
-categories: web development, API, Google, maps
+categories: web-development
 ---
 
 After [sites.everythingfarm.com](http://sites.everythingfarm.com) went live, the team decided there now was time to implement the option to drag the pin inside the google map on the rendered page. The idea behind this was that farmers are sometimes so obscurely located, we can't always expect *the* Google to be always right. So, we need to allow our rural, living in the boonies, farmers to show exactly how far into the badlands you may have to venture to get some choice pickings of your summer fruit.

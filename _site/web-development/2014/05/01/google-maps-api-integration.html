@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Google Maps API Integration</title>
+  <meta name="viewport" content="width=device-width">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- Bootstrap default css -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="/css/style.css" rel="stylesheet">
+
+
+
+
+
+</head>
+<body>
+
+  <!-- <div class="header">
+    <h1 class="title"><a href="/">Martha's Blog</a></h1>
+    <a class="extra" href="/">home</a>
+  </div> -->
+
+
+  <div class="wrapper">
+
+    <nav class="navbar navbar-default navbar-fixed-top hidden-xs">
+      <div class="navbar-inner navbar-content-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 pull-left">
+              <h1 class="blog-title hidden-xs"><a class="pink-hover" href="/">Martha's Blog</a></h1>
+
+            </div>
+            <div class="col-sm-9">
+              <ul class="hidden-xs">
+               <!--   <li><a>About</a></li> -->
+               <!--  <li><a>Resume</a></li> -->
+             </ul>
+           </div>
+         </div>
+       </div>
+     </div>
+   </nav>
+   <div class="container content">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="sidebar-nav">
+          <div class="navbar" role="navigation">
+            <div class="navbar-header">
+
+              <button type="button" class="navbar-toggle off" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <span class="visible-xs navbar-brand">Martha's Blog</span>
+            </div>
+
+
+            <div class="profile hidden-xs">
+              <img src="/assets/martha.jpg" class="bioPic">
+              <h3 class="bio-title">Martha Kobus</h3>
+              <span class="position">Front-End Developer</span>
+              <p>Bear with me while I get everything settled together. This blog started as a Sunday project (April 27th), and is still under construction. I am using Jekyll, Bootstrap, Sass, jQuery and GitHub pages to get this all running together! </p>
+              <hr>
+            </div>
+
+
+            <div class="navbar-collapse collapse sidebar-navbar-collapse">
+             <ul>
+               <!--     <li><a>About</a></li> -->
+               <!--  <li><a>Resume</a></li> -->
+             </ul>
+           </div><!--/.nav-collapse -->
+         </div>
+       </div>
+
+     </div>
+     <div class="col-sm-7 col-sm-offset-1">
+
+
+     
+     <div>
+       <h2 class="post-title">Google Maps API Integration</h2>
+       <p class="meta">01 May 2014</p>
+
+       <div class="post">
+        <p>After <a href="http://sites.everythingfarm.com">sites.everythingfarm.com</a> went live, the team decided there now was time to implement the option to drag the pin inside the google map on the rendered page. The idea behind this was that farmers are sometimes so obscurely located, we can&#39;t always expect <em>the</em> Google to be always right. So, we need to allow our rural, living in the boonies, farmers to show exactly how far into the badlands you may have to venture to get some choice pickings of your summer fruit.</p>
+
+        <p>Well of course, whenever something like this gets decided, it becomes a Front-End thing. So I began my journey with googling the Google Maps API and how to use it. Originally we were using Iframes but functionally, they do nothing, and can do nothing. To implement the map, we had to transform the entire thing to a <code>&lt;div&gt;</code> and load the map through a piece of JavaScript. Now, I&#39;m not going to go through all the boring details, but just point out a few key things I learned throughout this journey:</p>
+
+        <h1>You no longer need an API key (or so I believe)</h1>
+
+        <p>Lots of replies on the Google forums or Stackoverflow, have provided me with the assumption that one no longer needs an API key to make Google Maps work on your page. Now, I tried it out and it worked. But I guess we will have to see. Google does say not to worry, and that if a threshold does get reached, they will contact you. </p>
+
+        <p>I found out you can skate by with this:
+          <code>&#39;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;&#39;</code></p>
+
+          <h1>Bootstrap and Google Maps do not play nice</h1>
+
+          <p>They don&#39;t. It&#39;s plain stupid. But no body has the time to figure out what exactly is messing with it. So there&#39;s a workaround until you have the lazy Sunday to look at it (let&#39;s be honest. You never will.) If you want to know what happens with Bootstrap and the map <code>&lt;div&gt;</code>, it&#39;s pretty easy to see. It looks stupid. And there will be one tiny square of a map in the upper left hand corner of the div, and no amount of dragging is going to save you. Nope, the best way to go about it is to load this piece of code in your initialize() function:</p>
+          <div class="highlight"><pre><code class="text language-text" data-lang="javascript">google.maps.event.addListenerOnce(map, &#39;idle&#39;, function() {
+            google.maps.event.trigger(map, &#39;resize&#39;)
+            map.panTo(marker.position)
+          })
+        </code></pre></div>
+        <h1>How to get the coordinates of an Address</h1>
+
+        <p>At first I thought it was going to be easy. Then I thought it was going to be hard. And then I just didn&#39;t know. But Google is your friend. Remember that. All you need to find the coordinates of a user typed address, is to use this link:</p>
+        <pre>
+          <code class="text language-text" data-lang="text">
+            url = &#39;http://maps.googleapis.com/maps/api/geocode/json?address=&#39; + getCoordinatesAddress + &#39;&amp;sensor=true&#39;
+            $.getJSON(url, function(data) {
+            var location = data.results[0].geometry.location;
+            // coordinates are location.lat and location.lng
+            console.log(location.lat)
+            console.log(location.lng)
+          })
+        </code>
+      </pre>
+      <p>As you can see, the <strong>url</strong> variable has a simple geocode address with <strong>getCoordinatesAddress</strong> in there. This was passed as a simple value. Spaces and all. Google couldn&#39;t care less. Note the jQuery getJSON call. You will have to parse the response, as you see with <strong>var location</strong>. And the console logs were there just for me to make sure I was getting the right data from the response. Console.logs are your friend.</p>
+
+      <p>That&#39;s it really. I was done in half a day, and it was great. Learned a bit about Google APIs and it was great.</p>
+
+    </div>
+
+  </div>
+
+
+
+    </div>   
+  </div>
+</div>
+</div>
+
+
+
+<div id="footer" class="container">
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-inner navbar-content-center">
+      <div class="container">
+        <div class="row">
+         <div class="col-sm-6 pull-left teal-hover">
+          &copy; 2014 Martha Kobus. All right reserved.
+
+        </div>
+
+        <ul class="contact social-icons col-xs-12 col-sm-4 col-sm-offset-2">
+          <li><a href="http://twitter.com/TheMarthak" target="_blank" class="symbol" title="&#xe286;" id="twitter"></a></li>
+          <li><a href="https://www.linkedin.com/pub/martha-kobus/7a/413/491" target="_blank" class="symbol" title="&#xe252;" id="linkedin"></a></li>
+          <li><a href="http://github.com/mkobus/" class="symbol" target="_blank" title="&#xe237;" id="github"></a></li>
+          <li><a href="mailto:marthakobus@gmail.com" class="symbol" title="&#xe224;" id="email"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script>
+
+
+</script>
+</body>
+</html>
