@@ -181,6 +181,13 @@ a.symbol:before {
 
 }
 
+.post {
+	h1 {
+		font-size:18px;
+		color:$teal;
+	}
+}
+
 .pink-hover {
 	color:$pink;
 	transition: color 0.3s ease;
