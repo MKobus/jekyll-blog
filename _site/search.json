@@ -1,6 +1,14 @@
 [
 	
 		{
+		  "title"      : "CSS and JavaScript Resizing Based on Window Width: Let&#39;s play nice",
+		  "category"   : "",
+		  "url"        : "/articles/javascript/css/css-and-javascript-resizing/",
+		  "date"       : "2014-08-06 08:41:16 -0400",
+		  "shortdate"  : "August 06, 2014"
+		} ,
+	
+		{
 		  "title"      : "Google Maps API Integration",
 		  "category"   : "",
 		  "url"        : "/articles/web-development/google-maps-api-integration/",
