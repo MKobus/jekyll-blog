@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Musings of a Developer</title>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="/feed.xml" />
+<link rel="alternate" type="text/html" href="/" />
+<updated>2014-08-08T21:34:53-04:00</updated>
+<id>/</id>
+<author>
+  <name>Martha Kobus</name>
+  <uri>/</uri>
+  <email>marthakobus@gmail.com</email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[Google Maps API Integration]]></title>
+  <link rel="alternate" type="text/html" href="/articles/web-development/google-maps-api-integration/"/>
+  <id>/articles/web-development/google-maps-api-integration</id>
+  <published>2014-05-01T13:39:00-04:00</published>
+  <updated>2014-05-01T13:39:00-04:00</updated>
+  <author>
+    <name>Martha Kobus</name>
+    <uri></uri>
+    <email>marthakobus@gmail.com</email>
+  </author>
+  
+  <content type="html">
+    &lt;p&gt;After &lt;a href=&quot;http://sites.everythingfarm.com&quot;&gt;sites.everythingfarm.com&lt;/a&gt; went live, the team decided there now was time to implement the option to drag the pin inside the google map on the rendered page. The idea behind this was that farmers are sometimes so obscurely located, we can&amp;#39;t always expect &lt;em&gt;the&lt;/em&gt; Google to be always right. So, we need to allow our rural, living in the boonies, farmers to show exactly how far into the badlands you may have to venture to get some choice pickings of your summer fruit.&lt;/p&gt;
+
+&lt;p&gt;Well of course, whenever something like this gets decided, it becomes a Front-End thing. So I began my journey with googling the Google Maps API and how to use it. Originally we were using Iframes but functionally, they do nothing, and can do nothing. To implement the map, we had to transform the entire thing to a &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; and load the map through a piece of JavaScript. Now, I&amp;#39;m not going to go through all the boring details, but just point out a few key things I learned throughout this journey:&lt;/p&gt;
+
+&lt;h1&gt;You no longer need an API key (or so I believe)&lt;/h1&gt;
+
+&lt;p&gt;Lots of replies on the Google forums or Stackoverflow, have provided me with the assumption that one no longer needs an API key to make Google Maps work on your page. Now, I tried it out and it worked. But I guess we will have to see. Google does say not to worry, and that if a threshold does get reached, they will contact you. &lt;/p&gt;
+
+&lt;p&gt;I found out you can skate by with this:
+    &lt;code&gt;&amp;#39;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;amp;sensor=false&amp;amp;&amp;#39;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1&gt;Bootstrap and Google Maps do not play nice&lt;/h1&gt;
+
+&lt;p&gt;They don&amp;#39;t. It&amp;#39;s plain stupid. But no body has the time to figure out what exactly is messing with it. So there&amp;#39;s a workaround until you have the lazy Sunday to look at it (let&amp;#39;s be honest. You never will.) If you want to know what happens with Bootstrap and the map &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;, it&amp;#39;s pretty easy to see. It looks stupid. And there will be one tiny square of a map in the upper left hand corner of the div, and no amount of dragging is going to save you. Nope, the best way to go about it is to load this piece of code in your initialize() function:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;javascript&quot;&gt;google.maps.event.addListenerOnce(map, &amp;#39;idle&amp;#39;, function() {
+    google.maps.event.trigger(map, &amp;#39;resize&amp;#39;)
+    map.panTo(marker.position)
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;How to get the coordinates of an Address&lt;/h1&gt;
+
+&lt;p&gt;At first I thought it was going to be easy. Then I thought it was going to be hard. And then I just didn&amp;#39;t know. But Google is your friend. Remember that. All you need to find the coordinates of a user typed address, is to use this link:
+        &lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;javascript&quot;&gt;
+        url = &amp;#39;http://maps.googleapis.com/maps/api/geocode/json?address=&amp;#39; + getCoordinatesAddress + &amp;#39;&amp;amp;sensor=true&amp;#39;
+            $.getJSON(url, function(data) {
+                var location = data.results[0].geometry.location;
+                // coordinates are location.lat and location.lng
+                console.log(location.lat)
+                console.log(location.lng)
+            })
+            &lt;/code&gt;&lt;/pre&gt;
+ As you can see, the &lt;strong&gt;url&lt;/strong&gt; variable has a simple geocode address with &lt;strong&gt;getCoordinatesAddress&lt;/strong&gt; in there. This was passed as a simple value. Spaces and all. Google couldn&amp;#39;t care less. Note the jQuery getJSON call. You will have to parse the response, as you see with &lt;strong&gt;var location&lt;/strong&gt;. And the console logs were there just for me to make sure I was getting the right data from the response. Console.logs are your friend.&lt;/p&gt;
+
+&lt;p&gt;That&amp;#39;s it really. I was done in half a day and now have an implemented draggable pin in testing.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/articles/web-development/google-maps-api-integration/&quot;&gt;Google Maps API Integration&lt;/a&gt; was originally published by Martha Kobus at &lt;a href=&quot;&quot;&gt;Musings of a Developer&lt;/a&gt; on May 01, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
+  <title type="html"><![CDATA[Creating a Blog with Jekyll]]></title>
+  <link rel="alternate" type="text/html" href="/articles/jekyll/welcome-to-jekyll/"/>
+  <id>/articles/jekyll/welcome-to-jekyll</id>
+  <published>2014-04-27T08:41:16-04:00</published>
+  <updated>2014-04-27T08:41:16-04:00</updated>
+  <author>
+    <name>Martha Kobus</name>
+    <uri></uri>
+    <email>marthakobus@gmail.com</email>
+  </author>
+  
+  <content type="html">
+    &lt;p&gt;Well, I did it. I finally created a blog. &lt;em&gt;Celebration!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;However, there was this one tiny itty bitty issue. It was how I would do it. I refuse to use wordpress for my own projects. I’d like to think myself a genuine Web Developer, which makes me believe I should be able to prove my ability to use something other than Wordpress. So I started off my journey with the notion that I was going to spend my weekend writing a my blog with PHP. But when I mentioned it to my mother (who knows a lot about software and programming), she asked why I wouldn’t consider open source code.&lt;/p&gt;
+
+&lt;p&gt;Well that got me to thinking, and searching, and I stumbled upon Jekyll. Now, yes, there are many different options out there, but I chose Jekyll in the end because I remembered a co-worker raving about it recently. It was actually quite simple and nice to set up, and the more I went through the documentation, the more I realized this is possibly the most wonderful code out there for blogging from a developers perspective.&lt;/p&gt;
+
+&lt;p&gt;As I post this, there is still plenty to be done. And I’m never really happy with a final design, so this blog will probably be ever changing from a design perspective. But I &lt;em&gt;guess&lt;/em&gt; that’s ok. But here is to the kick off of my blog!&lt;/p&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/articles/jekyll/welcome-to-jekyll/&quot;&gt;Creating a Blog with Jekyll&lt;/a&gt; was originally published by Martha Kobus at &lt;a href=&quot;&quot;&gt;Musings of a Developer&lt;/a&gt; on April 27, 2014.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>

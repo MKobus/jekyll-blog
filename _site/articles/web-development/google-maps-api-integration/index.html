@@ -1,0 +1,275 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Google Maps API Integration &#8211; Musings of a Developer</title>
+<meta name="description" content="After sites.everythingfarm.com went live, the team decided there now was time to implement the option to drag the pin inside the google map on the rendered page. The idea behind this was that farmers are sometimes so obscurely located, we can&#39;t always expect the Google to be always right. So, we need to allow our rural, living in the boonies, farmers to show exactly how far into the badlands you may have to venture to get some choice pickings of your summer fruit.
+
+">
+<meta name="keywords" content="">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Google Maps API Integration">
+<meta name="twitter:description" content="After sites.everythingfarm.com went live, the team decided there now was time to implement the option to drag the pin inside the google map on the rendered page. The idea behind this was that farmers are sometimes so obscurely located, we can&#39;t always expect the Google to be always right. So, we need to allow our rural, living in the boonies, farmers to show exactly how far into the badlands you may have to venture to get some choice pickings of your summer fruit.
+
+">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/site-logo.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Maps API Integration">
+<meta property="og:description" content="After sites.everythingfarm.com went live, the team decided there now was time to implement the option to drag the pin inside the google map on the rendered page. The idea behind this was that farmers are sometimes so obscurely located, we can&#39;t always expect the Google to be always right. So, we need to allow our rural, living in the boonies, farmers to show exactly how far into the badlands you may have to venture to get some choice pickings of your summer fruit.
+
+">
+<meta property="og:url" content="/articles/web-development/google-maps-api-integration/">
+<meta property="og:site_name" content="Musings of a Developer">
+
+
+
+
+
+<link rel="canonical" href="/articles/web-development/google-maps-api-integration/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Musings of a Developer Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		        
+		    
+		    <li><a href="/about/" >About</a></li>
+		  
+		    
+		        
+		    
+		    <li><a href="/articles/" >Articles</a></li>
+		  
+		    
+		        
+		    
+		    <li><a href="/blog/" >Blog</a></li>
+		  
+        <li class="dosearch"><i class="fa fa-search"></i> Search</li>
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<div class="search-wrapper">
+  <div class="search-form">
+    <input type="text" class="search-field" placeholder="Search...">
+    <button class="close-btn"><i class="fa fa-times-circle fa-2x"></i></button>
+    <ul class="search-results post-list"></ul><!-- /.search-results -->
+  </div><!-- /.search-form -->
+</div><!-- ./search-wrapper -->
+
+<header class="masthead">
+	<div class="wrap">
+        
+    		<a href="/" class="site-logo" rel="home" title="Musings of a Developer"><h1 class="masthead_logo animated bounceInDown">{ MMK }</h1></a>
+        
+        <h1 class="site-title animated fadeIn"><a href="/">Musings of a Developer</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Thoughts, ideas, rants, useful tech stuff.</h2>
+	</div>
+</header><!-- /.masthead -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title">Google Maps API Integration</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <!-- 
+        
+        
+          <img src="/images/martha.jpg" class="bio-photo" alt="Martha Kobus bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">Martha Kobus</span></span>-->
+        <span class="entry-date date published"><time datetime="2014-05-01T13:39:00-04:00"><i class="icon-calendar-empty"></i> May 01, 2014</time></span>
+        
+        
+        
+        <div class="google-ads" style="margin-top:40px; text-align:center;">
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- 160x600 ad -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client=""
+       data-ad-slot=""></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div><!-- /.google-ads --><!-- /.google-ads -->
+      </footer>
+      <div class="entry-content">
+        <p>After <a href="http://sites.everythingfarm.com">sites.everythingfarm.com</a> went live, the team decided there now was time to implement the option to drag the pin inside the google map on the rendered page. The idea behind this was that farmers are sometimes so obscurely located, we can&#39;t always expect <em>the</em> Google to be always right. So, we need to allow our rural, living in the boonies, farmers to show exactly how far into the badlands you may have to venture to get some choice pickings of your summer fruit.</p>
+
+<p>Well of course, whenever something like this gets decided, it becomes a Front-End thing. So I began my journey with googling the Google Maps API and how to use it. Originally we were using Iframes but functionally, they do nothing, and can do nothing. To implement the map, we had to transform the entire thing to a <code>&lt;div&gt;</code> and load the map through a piece of JavaScript. Now, I&#39;m not going to go through all the boring details, but just point out a few key things I learned throughout this journey:</p>
+
+<h1>You no longer need an API key (or so I believe)</h1>
+
+<p>Lots of replies on the Google forums or Stackoverflow, have provided me with the assumption that one no longer needs an API key to make Google Maps work on your page. Now, I tried it out and it worked. But I guess we will have to see. Google does say not to worry, and that if a threshold does get reached, they will contact you. </p>
+
+<p>I found out you can skate by with this:
+    <code>&#39;https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;&#39;</code></p>
+
+<h1>Bootstrap and Google Maps do not play nice</h1>
+
+<p>They don&#39;t. It&#39;s plain stupid. But no body has the time to figure out what exactly is messing with it. So there&#39;s a workaround until you have the lazy Sunday to look at it (let&#39;s be honest. You never will.) If you want to know what happens with Bootstrap and the map <code>&lt;div&gt;</code>, it&#39;s pretty easy to see. It looks stupid. And there will be one tiny square of a map in the upper left hand corner of the div, and no amount of dragging is going to save you. Nope, the best way to go about it is to load this piece of code in your initialize() function:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="javascript">google.maps.event.addListenerOnce(map, &#39;idle&#39;, function() {
+    google.maps.event.trigger(map, &#39;resize&#39;)
+    map.panTo(marker.position)
+})
+</code></pre></div>
+<h1>How to get the coordinates of an Address</h1>
+
+<p>At first I thought it was going to be easy. Then I thought it was going to be hard. And then I just didn&#39;t know. But Google is your friend. Remember that. All you need to find the coordinates of a user typed address, is to use this link:
+        <pre><code class="text language-text" data-lang="javascript">
+        url = &#39;http://maps.googleapis.com/maps/api/geocode/json?address=&#39; + getCoordinatesAddress + &#39;&amp;sensor=true&#39;
+            $.getJSON(url, function(data) {
+                var location = data.results[0].geometry.location;
+                // coordinates are location.lat and location.lng
+                console.log(location.lat)
+                console.log(location.lng)
+            })
+            </code></pre>
+ As you can see, the <strong>url</strong> variable has a simple geocode address with <strong>getCoordinatesAddress</strong> in there. This was passed as a simple value. Spaces and all. Google couldn&#39;t care less. Note the jQuery getJSON call. You will have to parse the response, as you see with <strong>var location</strong>. And the console logs were there just for me to make sure I was getting the right data from the response. Console.logs are your friend.</p>
+
+<p>That&#39;s it really. I was done in half a day and now have an implemented draggable pin in testing.</p>
+
+        <nav class="pagination" role="navigation">
+          
+            <a href="/articles/jekyll/welcome-to-jekyll/" class="btn" title="Creating a Blog with Jekyll">Previous</a>
+          
+          
+        </nav><!-- /.pagination -->
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    
+
+<span>&copy; 2014 Martha Kobus. Powered by <a href="http://jekyllrb.com">Jekyll</a> using a manipulated <a href="http://mademistakes.com/so-simple/">So Simple Theme</a>.</span>
+<div class="social-icons">
+	
+	
+	
+	<a href="https://www.linkedin.com/pub/martha-kobus/7a/413/491" title="Martha Kobus on LinkedIn" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+	
+	
+	
+	<a href="http://github.com/mkobus" title="Martha Kobus on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+	<a href="mailto:marthakobus@gmail.com"><i class="fa fa-envelope fa-2x"></i></a>
+  <a href="/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+<!-- Jekyll Simple Search option -->
+<script>
+  $(document).ready(function() {
+      $('.search-field').simpleJekyllSearch({
+          jsonFile : '/search.json',
+          searchResults : '.search-results',
+          template : '<li><article><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></article></li>',
+          noResults: '<p>Nothing found.</p>'
+        });
+  });
+
+  (function( $, window, undefined ) {
+    
+     var bs = {
+          close: $(".close-btn"),
+          searchform: $(".search-form"),
+          canvas: $("body"),
+          dothis: $('.dosearch')
+      };
+    
+    bs.dothis.on('click', function() {
+      $('.search-wrapper').css({ display: "block" });
+      bs.searchform.toggleClass('active');
+      bs.searchform.find('input').focus();
+      bs.canvas.toggleClass('search-overlay');
+    });
+    
+      bs.close.on('click', function() {
+        $('.search-wrapper').removeAttr( 'style' );
+        bs.searchform.toggleClass('active');
+        bs.canvas.removeClass('search-overlay');
+    });
+  })( jQuery, window );
+</script>
+
+
+
+
+
+</body>
+</html>
