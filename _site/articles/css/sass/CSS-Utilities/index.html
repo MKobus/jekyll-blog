@@ -1,0 +1,311 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>CSS Utilities: Making Code Easier to Deal With &#8211; Musings of a Developer</title>
+<meta name="description" content="I recently read an article on the importance of utility classes in CSS.
+
+">
+<meta name="keywords" content="">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="CSS Utilities: Making Code Easier to Deal With">
+<meta name="twitter:description" content="I recently read an article on the importance of utility classes in CSS.
+
+">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/site-logo.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Utilities: Making Code Easier to Deal With">
+<meta property="og:description" content="I recently read an article on the importance of utility classes in CSS.
+
+">
+<meta property="og:url" content="/articles/css/sass/CSS-Utilities/">
+<meta property="og:site_name" content="Musings of a Developer">
+
+
+
+
+
+<link rel="canonical" href="/articles/css/sass/CSS-Utilities/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Musings of a Developer Feed">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Webfonts -->
+<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		        
+		    
+		    <li><a href="/about/" >About</a></li>
+		  
+		    
+		        
+		    
+		    <li><a href="/articles/" >Articles</a></li>
+		  
+		    
+		        
+		    
+		    <li><a href="/blog/" >Blog</a></li>
+		  
+        <li class="dosearch"><i class="fa fa-search"></i> Search</li>
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<div class="search-wrapper">
+  <div class="search-form">
+    <input type="text" class="search-field" placeholder="Search...">
+    <button class="close-btn"><i class="fa fa-times-circle fa-2x"></i></button>
+    <ul class="search-results post-list"></ul><!-- /.search-results -->
+  </div><!-- /.search-form -->
+</div><!-- ./search-wrapper -->
+
+<header class="masthead">
+	<div class="wrap">
+        
+    		<a href="/" class="site-logo" rel="home" title="Musings of a Developer"><h1 class="masthead_logo animated bounceInDown">{ MMK }</h1></a>
+        
+        <h1 class="site-title animated fadeIn"><a href="/">Musings of a Developer</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Thoughts, ideas, rants, useful tech stuff.</h2>
+	</div>
+</header><!-- /.masthead -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"></span>
+        
+          <h1 class="entry-title">CSS Utilities: Making Code Easier to Deal With</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        <!-- 
+        
+        
+          <img src="/images/martha.jpg" class="bio-photo" alt="Martha Kobus bio photo"></a>
+        
+        <span class="author vcard">By <span class="fn">Martha Kobus</span></span>-->
+        <span class="entry-date date published"><time datetime="2014-12-04T17:33:16-05:00"><i class="icon-calendar-empty"></i> December 04, 2014</time></span>
+        
+        
+        
+        <div class="google-ads" style="margin-top:40px; text-align:center;">
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- 160x600 ad -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client=""
+       data-ad-slot=""></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div><!-- /.google-ads --><!-- /.google-ads -->
+      </footer>
+      <div class="entry-content">
+        <h3 id="i-recently-read-an-article-on-the-importance-of-utility-classes-in-css">I recently read an article on the importance of utility classes in CSS.</h3>
+
+<p>See <a href="http://benfrain.com/enduring-css-writing-style-sheets-rapidly-changing-long-lived-projects/" target="_blank">article</a> by Ben Frain.</p>
+
+<p>Ben Frain has a lot of valid and interesting points. After I read the article, I walked away and mulled on it for a while.</p>
+
+<p>After a couple projects, I’d come to the realization that utilities were gold mines. At our company, we primarily use Bootstrap for anything new we create. Bootstrap is loaded with utility classes, such as “text-center”, or “pull-left”. But those are very generic. But even then, they still make my day developing sites, just a little easier.</p>
+
+<p>And then I inherited another project, that was all sorts of messy code. Aside from the fact that it was pure CSS (We are a Sass house, and when I see CSS stylesheets that a developer worked in, I cringe), it was a mess and finding the root cause of the styling problems just made me miserable.. It becomes a war zone and a shot in the dark “grep”, hoping that you find exactly what you’re looking for.</p>
+
+<p>And although Sass cleans up 70%ish of this problem, making your code a lot easier to read and maintain, you still have little issues here and there that could just save you some time in the long run. And maybe not just yourself, but a new team member as well. So I decided to start using utility classes for the sake of everyone.</p>
+
+<h3 id="deciding-to-do-and-actually-implement-are-twi-different-things">Deciding to do and actually implement are twi different things</h3>
+
+<p>What if we want to get a little more detailed? For example, a recent design we got (for a site that will be live in a couple days: exciting!), had social icons placed in several locations on the site. But they all utilized the same assets. Normally, based on the past, I would have styled each separate group. In the end, it becomes 2x more code than needed.</p>
+
+<p>So I approached it a little differently. I had this little bit in a navbar, and something resembling this in the footer of the site:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav navbar-nav navbar-right social-links hidden-xs&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;icons twitter&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span> <span class="na">href=</span><span class="s">&quot;https://twitter.com/ZiftrCoin&quot;</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;icons reddit&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span> <span class="na">href=</span><span class="s">&quot;http://www.reddit.com/r/ziftrCOIN/&quot;</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;icons google&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span> <span class="na">href=</span><span class="s">&quot;https://plus.google.com/112307351927891911137&quot;</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;icons email&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span> <span class="na">href=</span><span class="s">&quot;mailto:?subject=I wanted you to see this site&amp;amp;body=Check out this site http://www.ziftrcoin.com.&quot;</span><span class="nt">&gt;&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+<p>Note that the unordered list has a class name of “social-links” and each list item has a utility class of “icons” and then a name resembling what the icon is.</p>
+
+<p>It’s pretty straight forward, but it gives you an idea of how you can approach other situations. To style “social-links” in all places on the site, I created an included Sass file named <em>_utilities.scss</em> and placed it near the top of the hierarchy include list.</p>
+
+<div class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="nc">.social-links</span> <span class="err">{</span>
+  <span class="na">list-style-type</span><span class="o">:</span> <span class="no">none</span><span class="err">;</span>
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">0</span><span class="err">;</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="mi">0</span><span class="err">;</span>
+  <span class="nt">li</span> <span class="err">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="err">;</span>
+    <span class="na">height</span><span class="o">:</span> <span class="mi">23</span><span class="kt">px</span><span class="err">;</span>
+    <span class="na">width</span><span class="o">:</span> <span class="mi">24</span><span class="kt">px</span><span class="err">;</span>
+    <span class="na">margin</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span> <span class="mi">5</span><span class="kt">px</span><span class="err">;</span>
+    <span class="na">cursor</span><span class="o">:</span> <span class="no">pointer</span><span class="err">;</span>
+    <span class="k">&amp;</span><span class="nc">.icons</span> <span class="err">{</span>
+      <span class="na">background-image</span><span class="o">:</span> <span class="sx">url(../images/social_nav_sprite.png)</span><span class="err">;</span>
+      <span class="na">background-repeat</span><span class="o">:</span> <span class="no">no-repeat</span><span class="err">;</span>
+      <span class="na">background-size</span><span class="o">:</span> <span class="mi">98</span><span class="kt">px</span> <span class="mi">48</span><span class="kt">px</span><span class="err">;</span>
+      <span class="k">&amp;</span><span class="nc">.twitter</span> <span class="err">{</span>
+        <span class="na">background-position</span><span class="o">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span><span class="err">;</span>
+        <span class="na">&amp;</span><span class="o">:</span><span class="n">hover</span> <span class="err">{</span> <span class="no">background-position</span><span class="o">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">-24</span><span class="kt">px</span><span class="err">;</span> <span class="err">}</span>
+      <span class="err">}</span>
+      <span class="k">&amp;</span><span class="nc">.reddit</span> <span class="err">{</span>
+        <span class="na">background-position</span><span class="o">:</span> <span class="mi">-24</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span><span class="err">;</span>
+        <span class="na">&amp;</span><span class="o">:</span><span class="n">hover</span> <span class="err">{</span> <span class="no">background-position</span><span class="o">:</span> <span class="mi">-24</span><span class="kt">px</span> <span class="mi">-24</span><span class="kt">px</span><span class="err">;</span> <span class="err">}</span>
+      <span class="err">}</span>
+      <span class="k">&amp;</span><span class="nc">.google</span> <span class="err">{</span>
+        <span class="na">background-position</span><span class="o">:</span> <span class="mi">-49</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span><span class="err">;</span>
+        <span class="na">&amp;</span><span class="o">:</span><span class="n">hover</span> <span class="err">{</span> <span class="no">background-position</span><span class="o">:</span> <span class="mi">-49</span><span class="kt">px</span> <span class="mi">-24</span><span class="kt">px</span><span class="err">;</span> <span class="err">}</span>
+      <span class="err">}</span>
+      <span class="k">&amp;</span><span class="nc">.email</span> <span class="err">{</span>
+        <span class="na">background-position</span><span class="o">:</span> <span class="mi">-73</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span><span class="err">;</span>
+        <span class="na">&amp;</span><span class="o">:</span><span class="n">hover</span> <span class="err">{</span> <span class="no">background-position</span><span class="o">:</span> <span class="mi">-73</span><span class="kt">px</span> <span class="mi">-24</span><span class="kt">px</span><span class="err">;</span> <span class="err">}</span>
+      <span class="err">}</span>
+    <span class="err">}</span>
+  <span class="err">}</span>
+<span class="err">}</span></code></pre></div>
+
+<p>Now, I can go and place an element with the class name “social-links” anywhere, along with a list item with the class names “icons twitter”, and it will use the utility specified sprite and position.</p>
+
+<p>This approach isn’t limited to just images or sprites. I’ve used it with sections on a site that have mostly identical styling, section titles, even button elements. It just has to become habit.</p>
+
+<p>Am I perfect at this? No. It takes a lot of time and practice to remember to create and use utility classes. So far, probably 50% of the code on this upcoming site could have used utility classes and we are only doing it for a fraction of that. But it’s something I’m actively working on doing more often. But sometimes things like creeping deadlines and muscle memory cause you to create unelegant code. It’s a lot of hard effort to get into the mindset of doing this.</p>
+
+<p>But it’s something nice to strive for.</p>
+
+        <nav class="pagination" role="navigation">
+          
+            <a href="/articles/javascript/css/css-and-javascript-resizing/" class="btn" title="CSS and JavaScript Resizing Based on Window Width: Let's play nice">Previous</a>
+          
+          
+        </nav><!-- /.pagination -->
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    
+
+<span>&copy; 2014 Martha Kobus. Powered by <a href="http://jekyllrb.com">Jekyll</a> using a manipulated <a href="http://mademistakes.com/so-simple/">So Simple Theme</a>.</span>
+<div class="social-icons">
+	
+	
+	
+	<a href="https://www.linkedin.com/pub/martha-kobus/7a/413/491" title="Martha Kobus on LinkedIn" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+	
+	
+	
+	<a href="http://github.com/mkobus" title="Martha Kobus on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+	<a href="mailto:marthakobus@gmail.com"><i class="fa fa-envelope fa-2x"></i></a>
+  <a href="/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+<!-- Jekyll Simple Search option -->
+<script>
+  $(document).ready(function() {
+      $('.search-field').simpleJekyllSearch({
+          jsonFile : '/search.json',
+          searchResults : '.search-results',
+          template : '<li><article><a href="{url}">{title} <span class="entry-date"><time datetime="{date}">{shortdate}</time></span></a></article></li>',
+          noResults: '<p>Nothing found.</p>'
+        });
+  });
+
+  (function( $, window, undefined ) {
+    
+     var bs = {
+          close: $(".close-btn"),
+          searchform: $(".search-form"),
+          canvas: $("body"),
+          dothis: $('.dosearch')
+      };
+    
+    bs.dothis.on('click', function() {
+      $('.search-wrapper').css({ display: "block" });
+      bs.searchform.toggleClass('active');
+      bs.searchform.find('input').focus();
+      bs.canvas.toggleClass('search-overlay');
+    });
+    
+      bs.close.on('click', function() {
+        $('.search-wrapper').removeAttr( 'style' );
+        bs.searchform.toggleClass('active');
+        bs.canvas.removeClass('search-overlay');
+    });
+  })( jQuery, window );
+</script>
+
+
+
+
+
+</body>
+</html>
